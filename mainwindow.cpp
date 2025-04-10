@@ -101,34 +101,12 @@ void MainWindow::on_zapiszWyniki_clicked()
     // utworz fraze
     if (cisnienie.isEmpty()) {
         fraza = data + " | " + pora + " | " + "Waga: " + waga + " | Poziomy: " + poziomy + "\n";
+        bezCisnienia();
     }else{
     fraza = data + " | " + pora + " | " + "Waga: " + waga + " | Poziomy: " + poziomy + "\n";
     frazaDwa = data + " | Ciśnienie: " + cisnienie + " | Puls: " + puls + "\n";
+    zCisnieniem();
     }
-
-    // sprawdz czy plik poziomy.txt istnieje jesli nie to utworz
-    QFile file("poziomy.txt");
-    if (!file.open(QIODevice::Append | QIODevice::Text)) {
-        qDebug() << "Nie można otworzyć pliku!";
-        return;
-    }
-    QTextStream out(&file);
-
-    // zapisz dane do pliku
-    if (cisnienie.isEmpty()) {
-        out << fraza;
-    }else{
-        out << fraza;
-        out << frazaDwa;
-    }
-    out << "-------------------------------------------------------------------------------------\n";
-    file.close();
-    // wyczysc wszystkie pola
-    ui->lineEditWaga->clear();
-    ui->lineEditPoziomy->clear();
-    ui->pokazWyniki->clear();
-    ui->lineEditCisnienie->clear();
-    ui->lineEditPuls->clear();
 }
 
 
@@ -166,3 +144,49 @@ void MainWindow::on_pushButton_3_clicked()
     ui->pokazWyniki->setPlainText(allLines);
 }
 
+void MainWindow::bezCisnienia()
+{
+    // sprawdz czy plik poziomy.txt istnieje jesli nie to utworz
+    QFile file("poziomy.txt");
+    if (!file.open(QIODevice::Append | QIODevice::Text)) {
+        qDebug() << "Nie można otworzyć pliku!";
+        return;
+    }
+    QTextStream out(&file);
+
+    // zapisz dane do pliku
+    out << fraza;
+    out << "-------------------------------------------------------------------------------------\n";
+    file.close();
+
+    // wyczysc wszystkie pola
+    ui->lineEditWaga->clear();
+    ui->lineEditPoziomy->clear();
+    ui->pokazWyniki->clear();
+    ui->lineEditCisnienie->clear();
+    ui->lineEditPuls->clear();
+}
+
+void MainWindow::zCisnieniem()
+{
+    // sprawdz czy plik poziomy.txt istnieje jesli nie to utworz
+    QFile file("poziomy.txt");
+    if (!file.open(QIODevice::Append | QIODevice::Text)) {
+        qDebug() << "Nie można otworzyć pliku!";
+        return;
+    }
+    QTextStream out(&file);
+
+    // zapisz dane do pliku
+    out << fraza;
+    out << frazaDwa;
+    out << "-------------------------------------------------------------------------------------\n";
+    file.close();
+
+    // wyczysc wszystkie pola
+    ui->lineEditWaga->clear();
+    ui->lineEditPoziomy->clear();
+    ui->pokazWyniki->clear();
+    ui->lineEditCisnienie->clear();
+    ui->lineEditPuls->clear();
+}
