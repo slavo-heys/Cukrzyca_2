@@ -48,7 +48,6 @@ void MainWindow::on_wyczyscPola_clicked()
     ui->info->setStyleSheet("color: green");
     // ustaw border 1px na green
     ui->info->setStyleSheet("border: 1px solid green");
-
 }
 
 
@@ -83,7 +82,7 @@ void MainWindow::on_zapiszWyniki_clicked()
         ui->lineEditPuls->clear();
         return;
     }
-
+    /*
     // pobierz dane z lineEditCisnienie
     QString cisnienie = ui->lineEditCisnienie->text();
     // jesli cisnienie jest puste wstaw "none"
@@ -97,6 +96,13 @@ void MainWindow::on_zapiszWyniki_clicked()
     if (puls.isEmpty()) {
         puls = "none";
     }
+    */
+
+    // pobierz dane z lineEditCisnienie
+    QString cisnienie = ui->lineEditCisnienie->text();
+
+    // pobierz dane z lineEditPuls
+    QString puls = ui->lineEditPuls->text();
 
     // utworz fraze
     if (cisnienie.isEmpty()) {
