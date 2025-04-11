@@ -59,6 +59,12 @@ void MainWindow::on_zapiszWyniki_clicked()
     // pobierz dane z comboBoxPora
     QString pora = ui->comboBoxPora->currentText();
 
+    // jesli pora == > inna to wstaw aktualna godzine
+    if (pora == "> inna pora") {
+        QTime time = QTime::currentTime();
+        pora = time.toString("hh:mm");
+    }
+
     // pobierz dane z lineEditWaga
     QString waga = ui->lineEditWaga->text();
     // jesli waga jest pusta wstaw "none"
